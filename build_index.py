@@ -162,13 +162,7 @@ async def build_index(
             "url": qdrant_config.url,
             "api_key": qdrant_config.api_key,
             "collection_name": qdrant_config.collection_name,
-            "cosine_better_than_threshold": qdrant_config.cosine_better_than_threshold,
-        },
-        graph_db_storage_cls_kwargs={
-            "uri": neo4j_config.uri,
-            "username": neo4j_config.username,
-            "password": neo4j_config.password,
-            "database": neo4j_config.database,
+            "cosine_better_than_threshold": qdrant_config.cosine_better_than_threshold
         },
         chunk_token_size=900,
         chunk_overlap_token_size=50,

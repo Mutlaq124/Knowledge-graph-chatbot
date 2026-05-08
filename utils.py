@@ -127,19 +127,17 @@ async def initialize_lightrag() -> Optional[LightRAG]:
             working_dir=rag_config.working_dir,
             embedding_func=get_embedding_func(),
             llm_model_func=async_groq_llm,
+            llm_model_name=groq_config.model,
+            # Concurrency limits for Groq free tier
+            llm_model_max_async=4,
+            embedding_func_max_async=4,
             graph_storage="Neo4JStorage",
             vector_storage="QdrantVectorDBStorage",
             vector_db_storage_cls_kwargs={
                 "url": qdrant_config.url,
                 "api_key": qdrant_config.api_key,
                 "collection_name": qdrant_config.collection_name,
-                "cosine_better_than_threshold": qdrant_config.cosine_better_than_threshold,
-            },
-            graph_db_storage_cls_kwargs={
-                "uri": neo4j_config.uri,
-                "username": neo4j_config.username,
-                "password": neo4j_config.password,
-                "database": neo4j_config.database,
+                "cosine_better_than_threshold": qdrant_config.cosine_better_than_threshold
             },
             chunk_token_size=900,
             chunk_overlap_token_size=50,
