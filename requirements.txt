@@ -12,7 +12,7 @@ numpy>=2.0.0
 einops
 
 # Vector store
-qdrant-client==1.13.3
+qdrant-client>=1.17.0
 # downgrade - Lightrag use qdrant .search() method, in 1.17+ -> qdrant use .query_points
 
 # Graph store
