@@ -19,7 +19,7 @@ from lightrag.utils import EmbeddingFunc
 from lightrag.kg.shared_storage import initialize_pipeline_status
 from lightrag.prompt import PROMPTS
 
-from config import qdrant_config, groq_config, rag_config, embedding_config
+from config import qdrant_config, groq_config, rag_config, embedding_config, neo4j_config
 from prompt_template import KG_EXTRACTION_PROMPT, DEFENCE_ENTITY_TYPES
 
 PROMPTS["entity_extraction_system_prompt"] = KG_EXTRACTION_PROMPT
@@ -134,6 +134,12 @@ async def initialize_lightrag() -> Optional[LightRAG]:
                 "api_key": qdrant_config.api_key,
                 "collection_name": qdrant_config.collection_name,
                 "cosine_better_than_threshold": qdrant_config.cosine_better_than_threshold,
+            },
+            graph_db_storage_cls_kwargs={
+                "uri": neo4j_config.uri,
+                "username": neo4j_config.username,
+                "password": neo4j_config.password,
+                "database": neo4j_config.database,
             },
             chunk_token_size=900,
             chunk_overlap_token_size=50,
