@@ -42,7 +42,7 @@ class RAGConfig(BaseModel):
     working_dir: str = "./lightrag_qdrant_storage"
     search_modes: List[str] = ["mix", "hybrid", "local", "global", "naive"]
     default_search_mode: str = "local"
-    top_k: int = 3
+    top_k: int = 2
     entity_extract_max_gleaning: int = 1
     enable_llm_cache: bool = True
 
